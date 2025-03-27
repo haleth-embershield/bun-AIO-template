@@ -5,13 +5,13 @@ A template project for creating a React frontend with a Bun backend, containeriz
 ## Project Structure
 
 - `/frontend`: React application built with Vite and Bun, with its own Dockerfile
-- `/backend`: Bun server using Elysia.js, with its own Dockerfile
+- `/backend`: Bun server using Elysia.js for API endpoints, with its own Dockerfile
 - `docker-compose.yml`: Configuration to build and run both services together
 
 ## Features
 
-- **Backend**: Fast Bun server with Elysia.js
-- **Frontend**: React with TypeScript
+- **Backend**: Fast Bun server with Elysia.js for API endpoints
+- **Frontend**: React with TypeScript, served by Vite during development
 - **Development**: Hot reloading for both frontend and backend
 - **Production**: Optimized Docker setup with Nginx serving the frontend
 - **API Documentation**: Swagger UI at `/swagger`
@@ -55,16 +55,22 @@ winget install Oven-sh.Bun; winget install Docker.DockerDesktop```
    ```
 
 4. Access:
-   - Frontend: http://localhost:8080
-   - Backend API: http://localhost:3000/api
-   - API Documentation: http://localhost:3000/swagger
+   - Development:
+     - Frontend: http://localhost:5173
+     - Backend API: http://localhost:3000/api
+     - API Documentation: http://localhost:3000/swagger
+   - Production:
+     - Frontend: http://localhost:8080
+     - Backend API: http://localhost:8080/api
+     - API Documentation: http://localhost:8080/swagger
 
 ## Development Workflow
 
 - The `bun run dev:all` command in the backend directory will:
   1. Start the backend server that handles API requests
-  2. Start the frontend development server with hot reloading
-  3. Both servers will watch for changes in their respective code
+  2. Start the frontend development server with hot reloading via Vite
+  3. Vite proxy will forward API requests to the backend
+  4. Both servers will watch for changes in their respective code
   
 - For frontend-only development, run:
   ```bash

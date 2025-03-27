@@ -7,9 +7,7 @@
   "scripts": {
     "start": "bun index.ts",
     "dev": "bun --watch index.ts",
-    "dev:frontend": "cd ../frontend && bun run dev",
-    "build:frontend": "cd ../frontend && bun run build",
-    "dev:all": "concurrently \"bun run dev\" \"bun run dev:frontend\""
+    "dev:all": "concurrently \"bun run dev\" \"cd ../frontend && bun run dev\""
   },
   "dependencies": {
     "elysia": "^0.8.17",
